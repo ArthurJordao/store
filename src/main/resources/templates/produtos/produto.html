@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<div class="jumbotron">
+			<h1>Detalhes do produto</h1>
+			<p class="text-capitalize" th:text="${produto.nomeProduto}" />
+			<p th:text="'Têm o valor de ' + ${produto.valor} + ' R$'" />
+			<h2>Descrição</h2>
+			<p th:text="${produto.descricao}" />
+			<p>
+				<a th:href="@{'/produtos/' + ${produto.id}}" class="btn btn-primary">Detalhes</a>
+			</p>
+			<p>
+				<a th:href="@{'/produtos/edit/' + ${produto.id}}"
+					class="btn btn-primary">Editar</a>
+			</p>
+			<form action="#" th:action="@{/produtos/deleta}" method="post">
+				<input type="hidden" th:value="${produto.id}" name="id" /> <input
+					type="submit" value="Deletar produto" class="btn btn-danger" />
+			</form>
+			<br />
+			<p>
+				<a class="btn btn-lg btn-primary" th:href="@{/produtos}"
+					role="button">Veja todos os produtos</a>
+			</p>
+		</div>
+
+	</div>
+
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

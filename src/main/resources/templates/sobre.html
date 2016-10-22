@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<div class="jumbotron">
+			<h1>Sobre</h1>
+			<p>Sistema para gerenciar produtos.</p>
+			<p>Criado por: Arthur Bernardi Jordão.</p>
+			<p>Escrito com spring boot.</p>
+			<p>
+				<a href="https://github.com/ArthurJordao">Minha página no
+					github.</a>
+			</p>
+			<p>Código livre para modificações e uso.</p>
+		</div>
+
+
+	</div>
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>
