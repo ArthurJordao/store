@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="pt-BR">
 <head>
 <th:block th:include="fragments/menu :: head" />
 </head>
@@ -16,8 +16,8 @@
 			<p>Você pode adicionar, excluir, atualizar e listar produtos da
 				loja.</p>
 			<p>
-				<a class="btn btn-lg btn-primary" th:href="@{/produtos}" role="button">Veja
-					todos os produtos</a>
+				<a class="btn btn-lg btn-primary" th:href="@{/produtos}"
+					role="button">Veja todos os produtos</a>
 			</p>
 		</div>
 

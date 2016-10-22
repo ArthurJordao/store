@@ -1,12 +1,12 @@
 package br.com.store.repository.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import br.com.store.model.Produto;
 import br.com.store.repository.ProdutoRepository;
 
-@Service
+@Repository
 public class ProdutoService {
 
 	private ProdutoRepository produtoRepository;
