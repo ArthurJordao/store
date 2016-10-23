@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<h2>Login</h2>
+
+		<div class="jumbotron">
+			<div th:if="${param.error}">Usuario ou senha inválida.</div>
+			<div th:if="${param.logout}">Você foi deslogado.</div>
+			<form action="#" th:action="@{/login}" method="post">
+				<div class="form-group">
+					<label for="nome">Usuário:</label> <input type="text"
+						class="form-control" id="nome" placeholder="Usuário"
+						name="username" autofocus="autofocus" />
+				</div>
+				<div class="form-group">
+					<label for="valor">Senha:</label> <input type="password"
+						class="form-control" id="valor" placeholder="Senha"
+						name="password" />
+				</div>
+				<button type="submit" class="btn btn-primary">Logar</button>
+			</form>
+		</div>
+
+
+	</div>
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

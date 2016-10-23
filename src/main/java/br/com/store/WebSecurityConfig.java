@@ -26,8 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		            HttpMethod.POST, "/edit").hasRole("ADMIN").antMatchers(
 		                HttpMethod.POST, "/deleta").hasRole("ADMIN").antMatchers(
 		                    "/**").permitAll().anyRequest().authenticated().and()
-		    .formLogin().permitAll().and().logout().logoutRequestMatcher(
-		        new AntPathRequestMatcher("/logout"));
+		    .formLogin().loginPage("/login").permitAll().and().logout()
+		    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
 	}
 
