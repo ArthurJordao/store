@@ -24,7 +24,7 @@
 			<tbody>
 				<tr th:each="produto : ${produtos}">
 					<td class="text-capitalize" th:text="${{produto.nomeProduto}}" />
-					<td th:text="${produto.valor} + ' R$'" />
+					<td th:text="${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.valor)}" />
 					<td><a th:href="@{'/produtos/' + ${produto.id}}"
 						class="btn btn-primary">Detalhes</a></td>
 					<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/produtos/edit/' + ${produto.id}}"

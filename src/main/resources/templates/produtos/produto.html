@@ -14,7 +14,8 @@
 		<div class="jumbotron">
 			<h1>Detalhes do produto</h1>
 			<p class="text-capitalize" th:text="${produto.nomeProduto}" />
-			<p th:text="'Têm o valor de ' + ${produto.valor} + ' R$'" />
+			<p
+				th:text="'Têm o valor de ' + ${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.valor)}" />
 			<h2>Descrição</h2>
 			<p th:text="${produto.descricao}" />
 			<p sec:authorize="hasRole('ROLE_ADMIN')">

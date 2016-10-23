@@ -30,7 +30,7 @@
 				<div class="form-group" th:class="${#fields.hasErrors('valor')}? has-error">
 					<label for="valor">Valor:</label> <input type="number"
 						class="form-control" id="valor" placeholder="Valor do produto"
-						th:field="*{valor}" step="any" />
+						th:field="*{valor}" min="0.01" step="0.01" />
 					<ul>
 						<li th:each="err : ${#fields.errors('valor')}" th:text="${err}" />
 					</ul>

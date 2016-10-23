@@ -20,14 +20,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/produtos/form").hasRole("ADMIN")
-		    .antMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN").antMatchers(
-		        HttpMethod.GET, "/produtos/edit/**").hasRole("ADMIN").antMatchers(
-		            HttpMethod.POST, "/edit").hasRole("ADMIN").antMatchers(
-		                HttpMethod.POST, "/deleta").hasRole("ADMIN").antMatchers(
-		                    "/**").permitAll().anyRequest().authenticated().and()
-		    .formLogin().loginPage("/login").permitAll().and().logout()
-		    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		http.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN")
+		    .antMatchers("/produtos/form").hasRole("ADMIN").antMatchers(
+		        HttpMethod.POST, "/produtos").hasRole("ADMIN").antMatchers(
+		            HttpMethod.GET, "/produtos/edit/**").hasRole("ADMIN")
+		    .antMatchers(HttpMethod.POST, "/edit").hasRole("ADMIN").antMatchers(
+		        HttpMethod.POST, "/deleta").hasRole("ADMIN").antMatchers("/**")
+		    .permitAll().anyRequest().authenticated().and().formLogin().loginPage(
+		        "/login").permitAll().and().logout().logoutRequestMatcher(
+		            new AntPathRequestMatcher("/logout")).and().csrf()
+		    .ignoringAntMatchers("/user/**");
 
 	}
 

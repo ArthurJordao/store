@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import br.com.store.model.User;
 import br.com.store.repository.UserRepository;
 
 @Repository
@@ -22,6 +23,22 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 	    throws UsernameNotFoundException {
 		return userRepository.findOne(username);
+	}
+
+	public void save(User user) {
+		userRepository.save(user);
+	}
+
+	public Iterable<User> listAll() {
+		return userRepository.findAll();
+	}
+
+	public User userById(String user) {
+		return userRepository.findOne(user);
+	}
+
+	public void delete(String user) {
+		userRepository.delete(user);
 	}
 
 }
