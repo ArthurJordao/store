@@ -20,4 +20,13 @@ public class RoleService {
 		return roleRepository.findOne(name);
 	}
 
+	public void addRole(Role role) {
+		roleRepository.save(role);
+	}
+
+	public boolean exist(String roleName) {
+		return roleRepository.exists(roleName);
+
+	}
+
 }

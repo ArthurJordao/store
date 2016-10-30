@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<h1>Carrinho</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Valor</th>
+					<th>Detalhes</th>
+					<th>Deleta do carrinho</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="produto : ${produtos}">
+					<td class="text-capitalize" th:text="${{produto.nomeProduto}}" />
+					<td
+						th:text="${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.valor)}" />
+					<td><a th:href="@{'/produtos/' + ${produto.id}}"
+						class="btn btn-primary">Detalhes</a></td>
+					<td>
+						<form action="#" th:action="@{/carrinho/deleta}" method="post">
+							<input type="hidden" th:value="${produto.id}" name="id" /> <input
+								type="submit" value="Deletar" class="btn btn-danger" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h1 th:text="'Valor total: ' + ${valorTotal}" class="pull-right"></h1>
+	</div>
+
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

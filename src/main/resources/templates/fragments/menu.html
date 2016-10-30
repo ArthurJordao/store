@@ -41,10 +41,15 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Produtos <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/produtos/form}">Adicionar</a></li>
+								<li sec:authorize="hasRole('ROLE_ADMIN')"><a
+									th:href="@{/produtos/form}">Adicionar</a></li>
 								<li><a th:href="@{/produtos}">Listar todos</a></li>
+								<li sec:authorize="hasRole('ROLE_NORMAL')"><a
+									th:href="@{/carrinho/lista}">Carrinho</a></li>
 							</ul></li>
 						<li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+						<li sec:authorize="isAnonymous()"><a
+							th:href="@{/usuarios/form}">Cadastro</a></li>
 						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>

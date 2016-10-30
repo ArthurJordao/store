@@ -40,12 +40,15 @@ public class UserRestController {
 	public void add(@RequestParam(value = "user") String userName,
 	    @RequestParam(value = "password") String password) {
 		User user = new User();
-		user.setUser(userName);
+		user.setUsername(userName);
 		user.setPassword(password);
-
+		if (!roleService.exist("ROLE_ADMIN")) {
+			Role newRole = new Role();
+			newRole.setNome("ROLE_ADMIN");
+			roleService.addRole(newRole);
+		}
 		Role role = roleService.roleByName("ROLE_ADMIN");
 		user.addRole(role);
-
 		userService.save(user);
 	}
 

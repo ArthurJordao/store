@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<h2>Novo usuário</h2>
+
+		<div class="jumbotron">
+
+			<form action="#" th:action="@{/usuarios}" th:object="${user}"
+				method="post">
+				<div class="form-group" th:class="${#fields.hasErrors('username')}? has-error">
+					<label for="nome">Nome de usuário:</label> <input type="text"
+						class="form-control" id="nome" placeholder="Nome de usuário"
+						th:field="*{username}" autofocus="autofocus" required="required" />
+					<ul>
+						<li th:each="err : ${#fields.errors('username')}"
+							th:text="${err}" />
+					</ul>
+				</div>
+				<div class="form-group" th:class="${#fields.hasErrors('password')}? has-error">
+					<label for="senha">Senha:</label> <input type="password"
+						class="form-control" id="senha" placeholder="Senha"
+						th:field="*{password}" required="required" />
+					<ul>
+						<li th:each="err : ${#fields.errors('password')}"
+							th:text="${err}" />
+					</ul>
+				</div>
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+		</div>
+
+
+	</div>
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

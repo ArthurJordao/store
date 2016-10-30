@@ -18,7 +18,7 @@
 				<div class="form-group" th:class="${#fields.hasErrors('nomeProduto')}? has-error">
 					<label for="nome">Nome:</label> <input type="text"
 						class="form-control" id="nome" placeholder="Nome do produto"
-						th:field="*{nomeProduto}" autofocus="autofocus" />
+						th:field="*{nomeProduto}" autofocus="autofocus" required="required" />
 					<ul>
 						<li th:each="err : ${#fields.errors('nomeProduto')}"
 							th:text="${err}" />
