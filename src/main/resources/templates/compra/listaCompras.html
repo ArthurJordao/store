@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Valor</th>
+					<th>Quantidade</th>
+					<th>Detalhes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="compra : ${compras}">
+					<td th:text="${{compra.valor}}" />
+					<td th:text="${{compra.QuantidadeProdutos}}" />
+					<td><a th:href="@{'/compras/compra/' + ${compra.id}}"
+						class="btn btn-primary">Detalhes</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

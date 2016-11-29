@@ -21,6 +21,8 @@ public class Produto {
 	private double valor;
 	@Size(max = 255)
 	private String descricao;
+	@Min(value = 0)
+	private int quantidadeEmEstoque;
 
 	public Integer getId() {
 		return id;
@@ -77,6 +79,28 @@ public class Produto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public int getQuantidadeEmEstoque() {
+		return quantidadeEmEstoque;
+	}
+
+	public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
+		this.quantidadeEmEstoque = quantidadeEmEstoque;
+	}
+
+	public void compraProduto() {
+		if (!temEmEstoque())
+			throw new RuntimeException("A produto está sem estoque");
+		quantidadeEmEstoque--;
+	}
+
+	public boolean temEmEstoque() {
+		return quantidadeEmEstoque > 0;
+	}
+
+	public void devolveProduto() {
+		quantidadeEmEstoque++;
 	}
 
 }

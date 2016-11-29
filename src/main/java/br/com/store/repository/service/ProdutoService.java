@@ -32,4 +32,9 @@ public class ProdutoService {
 		produtoRepository.delete(id);
 	}
 
+	public Iterable<Produto> searchByProductName(String nomeProduto) {
+		return produtoRepository.find(nomeProduto);
+
+	}
+
 }

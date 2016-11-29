@@ -10,32 +10,31 @@
 	<div class="container">
 
 		<th:block th:include="fragments/menu :: menu" />
+		
+		<div class="jumbotron">
+			<h1>Detalhes da Compra</h1>
+			
+			<p th:text="${'Valor da compra: '+ compra.valor + ' R$'}" />
+			<p th:text="${'Quantidade de itens: ' + compra.QuantidadeProdutos}" />
+		</div>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Nome</th>
 					<th>Valor</th>
-					<th>Quantidade Em estoque</th>
 					<th>Detalhes</th>
-					<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="produto : ${produtos}">
+				<tr th:each="produto : ${compra.produtos}">
 					<td class="text-capitalize" th:text="${{produto.nomeProduto}}" />
 					<td th:text="${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.valor)}" />
-					<td th:text="${produto.quantidadeEmEstoque}" />
 					<td><a th:href="@{'/produtos/' + ${produto.id}}"
 						class="btn btn-primary">Detalhes</a></td>
-					
-					<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/produtos/edit/' + ${produto.id}}"
-						class="btn btn-primary">Editar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-lg btn-primary" th:href="@{/produtos/form}"
-			role="button">Adicionar produto</a>
 	</div>
 
 	<th:block th:include="fragments/menu :: menuscripts" />

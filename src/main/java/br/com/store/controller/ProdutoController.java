@@ -73,10 +73,14 @@ public class ProdutoController {
 		return "redirect:/produtos";
 	}
 
-	@PostMapping("/deleta")
-	public String deleta(@RequestParam("id") Integer id) {
-		produtoService.delete(id);
-		return "redirect:/produtos";
+	@GetMapping("/busca")
+	public String busca(Model model,
+	    @RequestParam("produtoBuscado") String produtoBuscado) {
+		Iterable<Produto> produtos = produtoService.searchByProductName(
+		    produtoBuscado);
+		model.addAttribute("produtos", produtos);
+
+		return "/produtos/lista";
 	}
 
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="pt-BR">
+<head>
+<th:block th:include="fragments/menu :: head" />
+</head>
+
+<body>
+	<div class="container">
+
+		<th:block th:include="fragments/menu :: menu" />
+
+		<!-- Main component for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<h1>Pedido efetuado com sucesso.</h1>
+			<p th:text="${compra.quantidadeProdutos + ' por ' + compra.valor + 'R$'}" />
+			<p>
+				<a class="btn btn-lg btn-primary" th:href="@{/produtos}"
+					role="button">Veja todos os produtos</a>
+			</p>
+		</div>
+
+
+	</div>
+	<th:block th:include="fragments/menu :: menuscripts" />
+</body>
+</html>

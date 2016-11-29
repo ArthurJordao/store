@@ -19,27 +19,49 @@
 					<th>Nome</th>
 					<th>Valor</th>
 					<th>Detalhes</th>
+					<th>Quantidade</th>
 					<th>Deleta do carrinho</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="produto : ${produtos}">
-					<td class="text-capitalize" th:text="${{produto.nomeProduto}}" />
+					<td class="text-capitalize" th:text="${{produto.key.nomeProduto}}" />
 					<td
-						th:text="${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.valor)}" />
-					<td><a th:href="@{'/produtos/' + ${produto.id}}"
+						th:text="${new java.text.DecimalFormat('R$#,##0.00;$-#,##0.00').format(produto.key.valor)}" />
+					<td><a th:href="@{'/produtos/' + ${produto.key.id}}"
 						class="btn btn-primary">Detalhes</a></td>
 					<td>
+					<ul class="list-inline">
+						<li th:if="${produto.key.temEmEstoque()}">
+							<form action="#" th:action="@{/carrinho/add}" method="post">
+								<input type="hidden" th:value="${produto.key.id}" name="id" /> <input
+									type="submit" value="+" class="btn btn-primary" />
+							</form>
+						</li>
+						<li th:text="${{produto.value}}"/>	
+						<li>
+							<form action="#" th:action="@{/carrinho/removerUmItem}" method="post">
+								<input type="hidden" th:value="${produto.key.id}" name="id" /> <input
+									type="submit" value="-" class="btn btn-primary" />
+							</form>
+						</li>
+					</ul>
+					</td>
+					<td>
 						<form action="#" th:action="@{/carrinho/deleta}" method="post">
-							<input type="hidden" th:value="${produto.id}" name="id" /> <input
+							<input type="hidden" th:value="${produto.key.id}" name="id" /> <input
 								type="submit" value="Deletar" class="btn btn-danger" />
 						</form>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<form action="#" th:action="@{/carrinho/concluirCompra}" method="post">
+			<input type="submit" value="Concluir compra" class="btn btn-primary" />
+		</form>
 		<h1 th:text="'Valor total: ' + ${valorTotal}" class="pull-right"></h1>
 	</div>
+	
 
 	<th:block th:include="fragments/menu :: menuscripts" />
 </body>

@@ -22,17 +22,13 @@
 				<a th:href="@{'/produtos/edit/' + ${produto.id}}"
 					class="btn btn-primary">Editar</a>
 			</p>
-			<form sec:authorize="hasRole('ROLE_ADMIN')" action="#"
-				th:action="@{/produtos/deleta}" method="post">
-				<input type="hidden" th:value="${produto.id}" name="id" /> <input
-					type="submit" value="Deletar produto" class="btn btn-danger" />
-			</form>
 			<br sec:authorize="hasRole('ROLE_ADMIN')" />
-			<form sec:authorize="hasRole('ROLE_NORMAL')" action="#"
+			<form th:if="${produto.temEmEstoque()}" sec:authorize="hasRole('ROLE_NORMAL')" action="#"
 				th:action="@{/carrinho/add}" method="post">
 				<input type="hidden" th:value="${produto.id}" name="id" /> <input
 					type="submit" value="Adicionar ao carrinho" class="btn btn-primary" />
 			</form>
+			<p th:if="${!produto.temEmEstoque()}" >Esse produto está fora de estoque</p>
 			<p>
 				<a class="btn btn-lg btn-primary" th:href="@{/produtos}"
 					role="button">Veja todos os produtos</a>
