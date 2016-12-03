@@ -30,13 +30,13 @@ public class ProdutoController {
 	@GetMapping
 	public String listaProdutos(Model model) {
 		model.addAttribute("produtos", produtoService.getAll());
-		return "/produtos/lista";
+		return "produtos/lista";
 	}
 
 	@GetMapping("/{id}")
 	public String produtoPorId(Model model, @PathVariable("id") int id) {
 		model.addAttribute("produto", produtoService.getById(id));
-		return "/produtos/produto";
+		return "produtos/produto";
 	}
 
 	@PostMapping
@@ -53,20 +53,20 @@ public class ProdutoController {
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("produto", new Produto());
-		return "/produtos/form";
+		return "produtos/form";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String editForm(Model model, @PathVariable("id") int id) {
 		model.addAttribute("produto", produtoService.getById(id));
-		return "/produtos/editform";
+		return "produtos/editform";
 	}
 
 	@PostMapping("/edit")
 	public String edit(@Valid @ModelAttribute Produto produto, BindingResult br,
 	    Model model) {
 		if (br.hasErrors())
-			return "/produtos/editform";
+			return "produtos/editform";
 
 		produtoService.save(produto);
 
@@ -80,7 +80,7 @@ public class ProdutoController {
 		    produtoBuscado);
 		model.addAttribute("produtos", produtos);
 
-		return "/produtos/lista";
+		return "produtos/lista";
 	}
 
 }

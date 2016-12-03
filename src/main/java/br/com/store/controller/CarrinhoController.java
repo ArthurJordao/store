@@ -53,7 +53,7 @@ public class CarrinhoController {
 
 		model.addAttribute("produtos", produtosEQuantidade);
 		model.addAttribute("valorTotal", carrinho.getValorTotal());
-		return "/carrinho/lista";
+		return "carrinho/lista";
 
 	}
 
@@ -118,6 +118,6 @@ public class CarrinhoController {
 
 		model.addAttribute("compra", compra);
 
-		return "/carrinho/conclusao";
+		return "carrinho/conclusao";
 	}
 }

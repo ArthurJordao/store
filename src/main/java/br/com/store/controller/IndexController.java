@@ -13,17 +13,17 @@ public class IndexController {
 
 	@RequestMapping
 	public String index() {
-		return "/index";
+		return "index";
 	}
 
 	@RequestMapping("/sobre")
 	public String sobre() {
-		return "/sobre";
+		return "sobre";
 	}
 
 	@RequestMapping("/contato")
 	public String contato() {
-		return "/contato";
+		return "contato";
 	}
 
 	@GetMapping("/login")
@@ -33,7 +33,7 @@ public class IndexController {
 
 		if (!(auth instanceof AnonymousAuthenticationToken))
 			return "forward:/";
-		return "/login";
+		return "login";
 	}
 
 }

@@ -9,17 +9,17 @@
 
 		<th:block th:include="fragments/menu :: menu" />
 
-		<h2>Novo usuário</h2>
+		<h2>Editar usuário</h2>
 
 		<div class="jumbotron">
 
-			<form action="#" th:action="@{/usuarios}" th:object="${user}"
+			<form action="#" th:action="@{/usuarios/edit}" th:object="${user}"
 				method="post">
 				<div class="form-group"
 					th:class="${#fields.hasErrors('username')}? has-error">
 					<label for="nome">Nome de usuário:</label> <input type="text"
 						class="form-control" id="nome" placeholder="Nome de usuário"
-						th:field="*{username}" autofocus="autofocus" required="required" />
+						th:field="*{username}" disabled="disabled" required="required" />
 					<ul>
 						<li th:each="err : ${#fields.errors('username')}" th:text="${err}" />
 					</ul>

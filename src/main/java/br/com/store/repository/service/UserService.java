@@ -41,4 +41,8 @@ public class UserService implements UserDetailsService {
 		userRepository.delete(user);
 	}
 
+	public boolean contains(User user) {
+		return userRepository.exists(user.getUsername());
+	}
+
 }

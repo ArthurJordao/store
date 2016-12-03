@@ -35,7 +35,7 @@ public class CompraController {
 
 		model.addAttribute("compras", compras);
 
-		return "/compra/listaCompras";
+		return "compra/listaCompras";
 
 	}
 
@@ -51,7 +51,7 @@ public class CompraController {
 			return "redirect:/";
 
 		model.addAttribute("compra", compra);
-		return "/compra/compra";
+		return "compra/compra";
 	}
 
 }

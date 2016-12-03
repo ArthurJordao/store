@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,9 +23,10 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotEmpty
-	private String user;
-	@NotEmpty
+	@Size(min=3, max=16)
+	@Column(name="user")
+	private String username;
+	@Size(min=8, max=20)
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
@@ -41,7 +43,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return user;
+		return username;
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class User implements UserDetails {
 	}
 
 	public void setUsername(String user) {
-		this.user = user;
+		this.username = user;
 	}
 
 	public void setPassword(String password) {
@@ -80,7 +82,7 @@ public class User implements UserDetails {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -93,10 +95,10 @@ public class User implements UserDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (user == null) {
-			if (other.user != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
