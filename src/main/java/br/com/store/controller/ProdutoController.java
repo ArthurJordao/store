@@ -43,7 +43,7 @@ public class ProdutoController {
 	public String novoProduto(@Valid @ModelAttribute Produto produto,
 	    BindingResult br, Model model) {
 		if (br.hasErrors())
-			return "/produtos/form";
+			return "produtos/form";
 
 		produtoService.save(produto);
 
